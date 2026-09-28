@@ -1,6 +1,45 @@
 import math
 
 # Task (2/12): Define a class Vec
+class Vec:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        coordinate = f"({self.x},{self.y})"
+        return coordinate
+
+    def __rmul__(self, factor):
+        x = self.x * factor
+        y = self.y * factor
+        return x,y
+
+    def __add__(self, other):
+        x = self.x + other.u
+        y = self.y + other.v
+        return x, y
+
+    def __sub__(self, other):
+        x = self.x - other.u
+        y = self.y - other.v
+        return x, y
+
+    def get_coords(self):
+        return (self.x, self.y)
+
+    def norm(self):
+        tup = self.get_coords()
+        mult = 0
+        for i in tup:
+            mult += i**2
+        mult = math.sqrt(mult)
+        return mult
+    
+    def dot(u, v):
+        pass
+
+
 
 # Task (3/12): Additionally define a function dot(u, v)
 
