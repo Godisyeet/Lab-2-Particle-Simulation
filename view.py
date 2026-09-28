@@ -28,6 +28,17 @@ input()
 ### NB. Task 9 is done in model.py. ###
 #######################################
 
+def move_oval_to(canvas, o, u1 ,u2):
+    coord1 = to_canvas_coords(canvas,u1)
+    coord2 = to_canvas_coords(canvas,u2)
+    
+    x1 = coord1[0]
+    y1 = coord1[1]
+    
+    x2 = coord2[0]
+    y2 = coord2[1]
+    
+    canvas.coords(o, x1, y1, x2, y2)
 # Task (10/12): Define a new function move_oval_to(o, u1, u2)
 
 # Task (11/12): Define a new function create_oval(canvas, particle)
