@@ -36,8 +36,13 @@ class Vec:
         mult = math.sqrt(mult)
         return mult
     
-    def dot(u, v):
-        pass
+
+
+def dot(u, v):
+    x1, y1 = u.get_coords()
+    x2, y2 = v.get_coords()
+
+    return (x1*x2) + (y1*y2)
 
 
 
