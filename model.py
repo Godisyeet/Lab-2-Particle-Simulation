@@ -45,7 +45,6 @@ def dot(u, v):
     return (x1*x2) + (y1*y2)
 
 
-
 # Task (3/12): Additionally define a function dot(u, v)
 
 # Task (4/12): Create a class Particle
