@@ -16,13 +16,13 @@ class Vec:
         return x,y
 
     def __add__(self, other):
-        x = self.x + other.u
-        y = self.y + other.v
+        x = self.x + other.x
+        y = self.y + other.y
         return x, y
 
     def __sub__(self, other):
-        x = self.x - other.u
-        y = self.y - other.v
+        x = self.x - other.x
+        y = self.y - other.y
         return x, y
 
     def get_coords(self):
