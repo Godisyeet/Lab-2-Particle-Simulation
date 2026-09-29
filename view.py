@@ -41,12 +41,23 @@ def move_oval_to(canvas, o, u1 ,u2):
     canvas.coords(o, x1, y1, x2, y2)
 # Task (10/12): Define a new function move_oval_to(o, u1, u2)
 
+
+
+# Task (11/12): Define a new function create_oval(canvas, particle)
 def create_oval(canvas, particle):
     x = particle.radius[0]/2
     y = particle.radius[1]/2
     particle1 = canvas.create_oval(-x, -y, x, y, fill = "blue")
     new_ball = move_oval_to(canvas, particle1, particle.position[0], particle.position[1])
     return new_ball
-# Task (11/12): Define a new function create_oval(canvas, particle)
 
 # Task (12/12): Define a function simulation_loop(f, timestep, particles)
+
+def simulation_loop(f, timestep, particles):
+
+    o1 = create_oval(canvas, Particle(5, [8, 3], [-2, 0], 2))
+    o2 = create_oval(canvas, Particle(8, [2, 3], [1, 0], 2))
+    
+    while True:
+        f(timestep, particles)
+        move_oval_to(canvas, )
