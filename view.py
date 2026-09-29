@@ -52,12 +52,27 @@ def create_oval(canvas, particle):
     return new_ball
 
 # Task (12/12): Define a function simulation_loop(f, timestep, particles)
+p1 = Particle(5, [8, 3], [-2, 0], 2)
+p2 = Particle(8, [2, 3], [1, 0], 2)
+
+o1 = create_oval(canvas, p1)
+o2 = create_oval(canvas, p2)
+
+particles = [(o1, p1), (o2, p2)]
 
 def simulation_loop(f, timestep, particles):
 
-    o1 = create_oval(canvas, Particle(5, [8, 3], [-2, 0], 2))
-    o2 = create_oval(canvas, Particle(8, [2, 3], [1, 0], 2))
     
     while True:
         f(timestep, particles)
-        move_oval_to(canvas, )
+
+        for particle in particles:
+            particle[1].position[0] += timestep*particle[1].velocity[0]
+            particle[1].position[1] += timestep*particle[1].velocity[1]
+
+            move_oval_to(canvas, particle[0], particle[1].bounding_box())
+
+        canvas.update()
+
+simulation_loop()
+        
