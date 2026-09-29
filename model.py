@@ -13,17 +13,17 @@ class Vec:
     def __rmul__(self, factor):
         x = self.x * factor
         y = self.y * factor
-        return x,y
+        return Vec(x,y)
 
     def __add__(self, other):
         x = self.x + other.x
         y = self.y + other.y
-        return x, y
+        return Vec(x, y)
 
     def __sub__(self, other):
         x = self.x - other.x
         y = self.y - other.y
-        return x, y
+        return Vec(x, y)
 
     def get_coords(self):
         return (self.x, self.y)
@@ -47,11 +47,11 @@ def dot(u, v):
 
 # Task (4/12): Create a class Particle
 class Particle:
-    def __init__(self, mass, position, velocity, radius):
-        self.mass = mass
-        self.position = position
-        self.velocity = velocity
-        self.radius = radius
+    def __init__(self, m, x, v, r):
+        self.mass = m
+        self.position = x
+        self.velocity = v
+        self.radius = r
 # Task (5/12): In the Particle class, implement a method inertial_move(self, dt).
     def inertial_move(self, dt):
         self.position = dt * self.velocity + self.position
@@ -67,10 +67,14 @@ class Particle:
 
 # Task (9/12): In the Particle class, add a method bounding_box(self)
 
+    def bounding_box(self):
+        x, y = self.position
+        Upper = Vec(x - self.radius, y + self.radius)
+        Lower = Vec(x + self.radius, y - self.radius)
+        return Upper, Lower
 
-
-
-
+ball = Particle(1,[8,3],[0,0],2)
+print(ball.bounding_box())
 ###########################################
 ### When you're done with all 12 tasks: ###
 ### forces/other features in this file! ###
