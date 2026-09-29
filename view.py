@@ -1,6 +1,7 @@
 from tkinter import *
 from model import *
 import time
+import random
 
 def to_canvas_coords(canvas, u):
     u = u.__rmul__(canvas.winfo_reqheight()/20)
@@ -19,22 +20,27 @@ def move_oval_to(canvas, o, u1 ,u2):
     coord1 = to_canvas_coords(canvas,u1)
     coord2 = to_canvas_coords(canvas,u2)
     
-    x1 = coord1[0]
-    y1 = coord1[1]
+    x1 = coord1.x
+    y1 = coord1.y
     
-    x2 = coord2[0]
-    y2 = coord2[1]
+    x2 = coord2.x
+    y2 = coord2.y
 
     canvas.coords(o, x1, y1, x2, y2)
     return o
 
 def create_oval(canvas, particle):
-    x = particle.radius/2
-    y = particle.radius/2
-    u1 = Vec(particle.position.x - x, particle.position.y - y)
-    u2 = Vec(particle.position.x + x, particle.position.y + y)
+    r = particle.radius
+    u1 = Vec(particle.position.x - r, particle.position.y - r)
+    u2 = Vec(particle.position.x + r, particle.position.y + r)
 
-    particle1 = canvas.create_oval(-x, -y, x, y, fill = "blue")
+    colors = [
+        "blue", "red", "green", "yellow", "purple", 
+        "orange", "pink", "cyan", "magenta", "lime", 
+        "gold", "turquoise", "violet", "coral", "deep sky blue"
+    ]
+    
+    particle1 = canvas.create_oval(-r, -r, r, r, fill = random.choice(colors))
     new_ball = move_oval_to(canvas, particle1, u1, u2)
     return new_ball
 
