@@ -81,6 +81,5 @@ def simulation_loop(f, timestep, particles):
             
 
         canvas.update()
-        now = time.time()
 
 simulation_loop(Forces.constant_gravitational_field, 0, particleList)
