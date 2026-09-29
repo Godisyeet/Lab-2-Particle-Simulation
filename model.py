@@ -26,7 +26,7 @@ class Vec:
         return Vec(x, y)
 
     def get_coords(self):
-        return (self.x, self.y)
+        return Vec(self.x, self.y)
 
     def norm(self):
         tup = self.get_coords()
@@ -58,7 +58,8 @@ class Particle:
 
 # Task (6/12): In the Particle class, implement a method apply_force(self, dt, f)
     def apply_force(self, dt, f):
-        self.velocity = dt * (f / self.mass) + self.velocity
+        factor = dt * self.mass
+        self.velocity = f.__rmul__(factor) + self.velocity
 ##########################################
 ### NB. Tasks 7–8 are done in view.py. ###
 ##########################################
@@ -67,13 +68,11 @@ class Particle:
 # Task (9/12): In the Particle class, add a method bounding_box(self)
 
     def bounding_box(self):
-        x, y = self.position
-        Upper = Vec(x - self.radius, y + self.radius)
-        Lower = Vec(x + self.radius, y - self.radius)
+        t = self.position
+        Upper = Vec(t.x - self.radius[0], t.y + self.radius[1])
+        Lower = Vec(t.x + self.radius[0], t.y - self.radius[1])
         return Upper, Lower
 
-ball = Particle(1,[8,3],[0,0],2)
-print(ball.bounding_box())
 ###########################################
 ### When you're done with all 12 tasks: ###
 ### forces/other features in this file! ###
@@ -82,5 +81,5 @@ print(ball.bounding_box())
 class Forces:
     def constant_gravitational_field(dt, particles, g=10):
         for particle in particles:
-            downVec = Vec(0, -g*particle.mass)
-            particle.apply_force(dt, downVec.get_coords())
+            downVec = Vec(0, -g*particle[1].mass)
+            particle[1].apply_force(dt, downVec.get_coords())
