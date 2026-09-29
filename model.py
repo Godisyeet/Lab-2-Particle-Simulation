@@ -1,6 +1,5 @@
 import math
 
-# Task (2/12): Define a class Vec
 class Vec:
     def __init__(self, x, y):
         self.x = x
@@ -44,10 +43,10 @@ def dot(u, v):
 
 class Particle:
     def __init__(self, m, x, v, r):
-        self.mass = m
-        self.position = x
-        self.velocity = v
-        self.radius = r
+        self.mass = m # float
+        self.position = x # vec
+        self.velocity = v # vec
+        self.radius = r # float
 
     def inertial_move(self, dt):
         self.position = dt * self.velocity + self.position
