@@ -1,8 +1,12 @@
 from tkinter import *
 from model import *
+import time
+
+
 # Task (7/12): Draw on canvas
 def to_canvas_coords(canvas, u):
-    x, y = u.__rmul__(canvas.winfo_reqheight()/20)
+    t = u.__rmul__(int(canvas.winfo_reqheight()/20))
+    x, y = t.get_coords()
     y *= -1
     x += canvas.winfo_reqwidth()/2
     y += canvas.winfo_reqheight()/2
@@ -13,14 +17,6 @@ root = Tk()
 canvas = Canvas(root, bg="white", width=600, height=600)
 canvas.pack()
 
-u = Vec(-2, 10)
-v = to_canvas_coords(canvas, u)
-pSize = 50
-
-
-o = canvas.create_oval(v[0]-pSize/2, v[1]-pSize/2, v[0]+pSize/2, v[1]+pSize/2, fill="blue")
-
-input()
 # Task (8/12): Define a new function to_canvas_coords(canvas, x)
 
 
@@ -48,12 +44,12 @@ def create_oval(canvas, particle):
     x = particle.radius[0]/2
     y = particle.radius[1]/2
     particle1 = canvas.create_oval(-x, -y, x, y, fill = "blue")
-    new_ball = move_oval_to(canvas, particle1, particle.position[0], particle.position[1])
+    new_ball = move_oval_to(canvas, particle1, (particle.position[0] - x, particle.position[1] - y), (particle.position[0] + x, particle.position[1] + y))
     return new_ball
 
 # Task (12/12): Define a function simulation_loop(f, timestep, particles)
-p1 = Particle(5, [8, 3], [-2, 0], 2)
-p2 = Particle(8, [2, 3], [1, 0], 2)
+p1 = Particle(5, [8, 3], [-2, 0], [2, 2])
+p2 = Particle(8, [2, 3], [1, 0], [2, 2])
 
 o1 = create_oval(canvas, p1)
 o2 = create_oval(canvas, p2)
@@ -61,12 +57,14 @@ o2 = create_oval(canvas, p2)
 particles = [(o1, p1), (o2, p2)]
 
 def simulation_loop(f, timestep, particles):
-
     
     while True:
         f(timestep, particles)
+        timestep = time.time() - timestep
+        
 
         for particle in particles:
+            print(timestep)
             particle[1].position[0] += timestep*particle[1].velocity[0]
             particle[1].position[1] += timestep*particle[1].velocity[1]
 
@@ -74,5 +72,5 @@ def simulation_loop(f, timestep, particles):
 
         canvas.update()
 
-simulation_loop()
+simulation_loop(Forces.constant_gravitational_field(), 0, particles)
         

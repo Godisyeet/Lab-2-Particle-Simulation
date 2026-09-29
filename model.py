@@ -13,7 +13,7 @@ class Vec:
     def __rmul__(self, factor):
         x = self.x * factor
         y = self.y * factor
-        return Vec(x,y)
+        return Vec(x, y)
 
     def __add__(self, other):
         x = self.x + other.x
