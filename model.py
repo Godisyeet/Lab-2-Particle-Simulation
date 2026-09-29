@@ -61,7 +61,7 @@ class Particle:
 
 # Task (6/12): In the Particle class, implement a method apply_force(self, dt, f)
     def apply_force(self, dt, f):
-        self.velocity = td * (f / self.mass) + self.velocity
+        self.velocity = dt * (f / self.mass) + self.velocity
 ##########################################
 ### NB. Tasks 7–8 are done in view.py. ###
 ##########################################
@@ -81,3 +81,9 @@ print(ball.bounding_box())
 ### When you're done with all 12 tasks: ###
 ### forces/other features in this file! ###
 ###########################################
+
+class Forces:
+    def constant_gravitational_field(dt, particles, g=10):
+        for particle in particles:
+            downVec = Vec(0, -g*particle.mass)
+            particle.apply_force(dt, downVec.get_coords())
