@@ -53,8 +53,7 @@ class Particle:
 
 
     def apply_force(self, dt, f):
-        factor = dt * self.mass
-        self.velocity = f.__rmul__(factor) + self.velocity
+        self.velocity = dt * f.__rmul__(1/self.mass) + self.velocity
 
     def bounding_box(self):
         t = self.position
