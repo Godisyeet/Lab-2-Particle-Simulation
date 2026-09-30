@@ -3,6 +3,10 @@ from model import *
 import time
 import random
 
+root = Tk()
+canvas = Canvas(root, bg="white", width=800, height=600)
+canvas.pack()
+
 def to_canvas_coords(canvas, u):
     u = u.__rmul__(canvas.winfo_reqheight()/20)
     u.y *= -1
@@ -10,11 +14,6 @@ def to_canvas_coords(canvas, u):
     u.y += canvas.winfo_reqheight()/2
     x, y = u.get_coords()
     return Vec(x, y)
-    
-
-root = Tk()
-canvas = Canvas(root, bg="white", width=800, height=600)
-canvas.pack()
 
 def move_oval_to(canvas, o, u1 ,u2):
     coord1 = to_canvas_coords(canvas,u1)

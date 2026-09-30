@@ -51,7 +51,6 @@ class Particle:
     def inertial_move(self, dt):
         self.position = dt * self.velocity + self.position
 
-
     def apply_force(self, dt, f):
         self.velocity = dt * f.__rmul__(1/self.mass) + self.velocity
 
