@@ -16,7 +16,7 @@ o2 = create_oval(canvas, p2)
 o3 = create_oval(canvas, p3)
 o4 = create_oval(canvas, p4)
 
-pList = [(o1, p1), (o2, p2), (o3, p3), (o4, p4)]
+pList = [p1, p2, p3, p4]
 
 simulation_loop(Forces.constant_gravitational_field, 0, pList)
 
