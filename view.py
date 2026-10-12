@@ -59,3 +59,4 @@ def simulation_loop(f, timestep, particles):
             particle.inertial_move(timestep)
             b1, b2 = particle.bounding_box()
             move_oval_to(canvas, oval, b1, b2)
+        canvas.update()
