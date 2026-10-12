@@ -60,8 +60,7 @@ class Particle:
         Lower = Vec(t.x + self.radius, t.y - self.radius)
         return Upper, Lower
 
-class Forces:
-    def constant_gravitational_field(dt, particles, g=10):
-        for particle in particles:
-            downVec = Vec(0, -g*particle[1].mass)
-            particle[1].apply_force(dt, downVec)
+def constant_gravitational_field(dt, particles, g=10):
+    for particle in particles:
+        downVec = Vec(0, -g*particle[1].mass)
+        particle[1].apply_force(dt, downVec)
