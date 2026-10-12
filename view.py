@@ -46,17 +46,16 @@ def create_oval(canvas, particle):
 def simulation_loop(f, timestep, particles):
 
     lastTime = time.time()
+    oval_list = []
+    for i in particles:
+        oval_list.append(create_oval(canvas, i))
     while True:
         f(timestep, particles)
         now = time.time()
         timestep = now - lastTime
         lastTime = now
-        
-
-        for particle in particles:
+    
+        for particle,oval in zip(particles,oval_list):
             particle.inertial_move(timestep)
             b1, b2 = particle.bounding_box()
-            move_oval_to(canvas, particle[0], b1, b2)
-            
-
-        canvas.update()
+            move_oval_to(canvas, oval, b1, b2)
