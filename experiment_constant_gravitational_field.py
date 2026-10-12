@@ -11,6 +11,7 @@ p2 = Particle(1, Vec(7, 7), Vec(-6, 6), 3)
 p3 = Particle(3, Vec(0, 7), Vec(0, 10), 2)
 p4 = Particle(1, Vec(3, 7), Vec(5, 0), 1)
 
+#Show that create oval does not require simulation_loop to function
 o1 = create_oval(canvas, p1)
 o2 = create_oval(canvas, p2)
 o3 = create_oval(canvas, p3)
