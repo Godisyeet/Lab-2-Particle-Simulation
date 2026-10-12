@@ -62,5 +62,5 @@ class Particle:
 
 def constant_gravitational_field(dt, particles, g=10):
     for particle in particles:
-        downVec = Vec(0, -g*particle[1].mass)
-        particle[1].apply_force(dt, downVec)
+        downVec = Vec(0, -g*particle.mass)
+        particle.apply_force(dt, downVec)
