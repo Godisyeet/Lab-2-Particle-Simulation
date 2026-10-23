@@ -56,7 +56,6 @@ def simulation_loop(f, timestep, particles):
         
         f(dt, particles)
         for particle,oval in zip(particles,oval_list):
-            create_oval(canvas, particle)
             particle.inertial_move(dt)
             b1, b2 = particle.bounding_box()
             move_oval_to(canvas, oval, b1, b2)
